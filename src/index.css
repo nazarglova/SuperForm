@@ -1,0 +1,51 @@
+body {
+  font: 18px "Century Gothic", Futura, sans-serif;
+  margin: 0; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.form-app:after {
+  content: '';
+  display: block;
+  clear: both; }
+
+.form-box,
+.resault-box {
+  padding: 30px;
+  float: left;
+  width: 50%;
+  height: 100vh; }
+
+.resault-box {
+  background-color: #ccc; }
+  .resault-box .user-info {
+    margin-bottom: 15px;
+    padding: 20px;
+    height: 300px;
+    width: 400px;
+    background: #fff;
+    border: 2px solid; }
+    .resault-box .user-info pre {
+      margin: 0; }
+
+button {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: 2px solid; }
+  button:not([disabled]) {
+    cursor: pointer; }
+  button[disabled] {
+    cursor: no-drop; }
+
+.form-box form input,
+.form-box form textarea {
+  display: block;
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+  border: 2px solid; }
+
+/*# sourceMappingURL=index.css.map */
