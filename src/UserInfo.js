@@ -1,9 +1,9 @@
 import React from "react";
-import renderButton from './renderButton';
+import Button from './Button';
 
 const UserInfo = (props) => {
-	let {userInfo, isDisabled, onClick} = props;
-	let text = (!isDisabled) && JSON.stringify(userInfo, null, '\t');
+	let {userInfo, handleClick} = props;
+	let text = (Object.keys(userInfo).length > 0) && JSON.stringify(userInfo, null, '\t');
 	return (
 		<div>
 			<div className="user-info">
@@ -11,11 +11,11 @@ const UserInfo = (props) => {
 					{text}
 				</pre>
 			</div>
-			{renderButton({
-				value: 'Clear',
-				isDisabled: isDisabled,
-				onClick: onClick
-			})}
+			<Button
+				value="Clear"
+				onClick={handleClick}
+				isDisabled={!text}
+			/>
 		</div>
 	)
 };

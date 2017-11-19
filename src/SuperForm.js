@@ -1,70 +1,66 @@
 import React from "react";
-import renderInput from './renderInput';
-import renderButton from './renderButton';
+import Input from './Input';
+import Button from './Button';
 
 export default class SuperForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			userInfo: {
-				name: null,
-				surName: null,
-				aboutMe: null
+				name: '',
+				surName: '',
+				aboutMe: ''
 			},
 			isDisabled: true,
 		};
 	};
+
 	handleChange = (event) => {
 		let inputName = event.target.name;
 		let inputValue = event.target.value;
-
-		let state = Object.assign({}, this.state);
-
-		let userInfo = state.userInfo;
-
+		let userInfo = this.state.userInfo;
 		userInfo[inputName] = inputValue;
 		let isUserInfoFull = !this.isFullIn(userInfo);
-		state.isDisabled = isUserInfoFull;
-		this.setState(state);
+		this.setState({userInfo, isDisabled: isUserInfoFull});
 	};
-	hendlerReset = () => {
-		let state = Object.assign({}, this.state);
-		let userInfo = state.userInfo;
+	handleReset = () => {
+		let userInfo = this.state.userInfo;
 		for (let key in userInfo) {
-			userInfo[key] = null;
+			userInfo[key] = "";
 		}
-		state.isDisabled = true;
-		this.setState(state);
+		this.setState({userInfo, isDisabled: true});
 	};
-	isFullIn(object) {
-		for (let key in object) {
-			if (object[key] === null || object[key] === "") return false;
+
+	isFullIn(obj) {
+		for (let key in obj) {
+			if (obj[key] === "") return false;
 		}
 		return true;
 	};
+
 	render() {
 		return (
-			<form onSubmit={this.props.hendlerSubmit} onChange={this.handleChange}
-				  onReset={this.hendlerReset}>
-
-				{renderInput({
-					name: 'name',
-					placeholder: 'Your Name'
-				})}
-				{renderInput({
-					name: 'surName',
-					placeholder: 'Surname'
-				})}
-				{renderInput({
-					type: 'textarea',
-					name: 'aboutMe',
-					placeholder: 'About Me'
-				})}
-				{renderButton({
-					type: 'submit',
-					value: 'Save',
-					isDisabled: this.state.isDisabled
-				})}
+			<form onSubmit={this.props.handleSubmit}
+				  onChange={this.handleChange}
+				  onReset={this.handleReset}>
+				<Input
+					name="name"
+					placeholder="Your Name"
+				/>
+				<Input
+					name="surName"
+					placeholder="Surname"
+				/>
+				<Input
+					type="textarea"
+					name="aboutMe"
+					placeholder="About Me"
+				/>
+				<Button
+					type="submit"
+					value="Save"
+					isDisabled={this.state.isDisabled}
+				/>
 			</form>);
 	}
 }

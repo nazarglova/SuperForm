@@ -8,34 +8,27 @@ class SuperFormApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			userInfo: {},
-			isDisabled: true,
+			userInfo: {}
 		};
 	};
 
-	hendlerSubmit = (event) => {
+	handleSubmit = (event) => {
 		event.preventDefault();
 		let target = event.target;
 		let elements = target.elements;
 		let elementsLenght = elements.length;
-
-		let state = Object.assign({}, this.state);
-		let userInfo = state.userInfo;
+		let userInfo = this.state.userInfo;
 
 		for (let i = 0; i < elementsLenght; i++) {
 			if (elements[i].type !== "submit") {
 				userInfo[elements[i].name] = elements[i].value;
 			}
 		}
-		state.isDisabled = false;
-		this.setState(state);
+		this.setState(userInfo);
 		target.reset();
 	};
-	hendlerClick = () => {
-		let state = Object.assign({}, this.state);
-		state.userInfo = {};
-		state.isDisabled = true;
-		this.setState(state);
+	clearUserInfo = () => {
+		this.setState({userInfo: {}});
 	};
 
 	render() {
@@ -44,24 +37,20 @@ class SuperFormApp extends React.Component {
 				<div className="form-box">
 					<h1>Super Form</h1>
 					<SuperForm
-						hendlerSubmit={this.hendlerSubmit}
+						handleSubmit={this.handleSubmit}
 					/>
 				</div>
 				<div className="resault-box">
 					<h1>Result</h1>
 					<UserInfo
 						userInfo={this.state.userInfo}
-						isDisabled={this.state.isDisabled}
-						onClick={this.hendlerClick}
+						handleClick={this.clearUserInfo}
 					/>
 				</div>
 			</div>
 		);
 	}
 }
-
-
-// ========================================
 
 ReactDOM.render(
 	<SuperFormApp />,

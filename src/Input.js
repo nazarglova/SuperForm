@@ -1,5 +1,5 @@
 import React from "react";
-const GenerateInput = (props)=> {
+const Input = (props)=> {
 	switch (props.type) {
 		case 'textarea':
 			return (
@@ -11,4 +11,4 @@ const GenerateInput = (props)=> {
 			);
 	}
 };
-export default GenerateInput;
+export default Input;

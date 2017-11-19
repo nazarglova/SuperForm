@@ -1,7 +1,7 @@
 import React from "react";
-const GenerateButton = (props) => {
+const Button = (props) => {
 	return (
 		<button type={props.type} disabled={props.isDisabled} onClick={props.onClick}>{props.value}</button>
 	);
 };
-export default GenerateButton;
+export default Button;
